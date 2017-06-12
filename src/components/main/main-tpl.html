@@ -1,6 +1,6 @@
 <h1>Generator</h1>
-<div class="form">
-  <input type="text" ng-model="main.number" minlength="12" maxlength="13">
-  <button ng-click="main.generate()">Generate</button>
-</div>
+<form ng-submit="main.generate()">
+  <input type="text" ng-model="main.number" minlength="12" maxlength="12">
+  <button type="submit">Generate</button>
+</form>
 <canvas id="field" width="400" height="400"></canvas>
