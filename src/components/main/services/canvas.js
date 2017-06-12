@@ -1,13 +1,18 @@
-export const WIDTH = 3;
+export const WIDTH = 2;
 export const START_X = 60;
 export const START_Y = 20;
 export const HEIGHT = WIDTH * 50;
 export const HEIGHT_BORDER = HEIGHT * 1.07221007;
+// signature
+export const FONT_SIZE = WIDTH * 7;
+export const SIGNATURE_X = START_X;
+export const SIGNATURE_Y = START_Y + HEIGHT + FONT_SIZE;
 
 export default class Canvas {
   constructor() {
     const c = document.getElementById('field');
     this.ctx = c.getContext('2d');
+    this.ctx.font = `bold ${FONT_SIZE}px sans-serif`;
     this.x = START_X;
   }
 
@@ -18,6 +23,7 @@ export default class Canvas {
     this.drawCore();
     this.drawSequence(sequences.right);
     this.drawBorder();
+    this.drawSignature(sequences.parts);
   }
 
   drawBorder() {
@@ -39,10 +45,23 @@ export default class Canvas {
     }
   }
 
+  drawSignature(parts) {
+    let x = SIGNATURE_X + FONT_SIZE * 0.7;
+    this.createSign(SIGNATURE_X - FONT_SIZE, SIGNATURE_Y, parts.key);
+    parts.left.map((digit) => {
+      this.createSign(x, SIGNATURE_Y, digit);
+      x += FONT_SIZE;
+    });
+    x += FONT_SIZE * 0.7;
+    parts.right.push(parts.sum);
+    parts.right.map((digit) => {
+      this.createSign(x, SIGNATURE_Y, digit);
+      x += FONT_SIZE;
+    });
+  }
+
   createSign(x, y, text) {
-    const sizeFont = 12;
-    this.ctx.font = `bold ${sizeFont}px sans-serif`;
-    this.ctx.fillText(text, x - sizeFont / 2 + 1, y);
+    this.ctx.fillText(text, x, y);
   }
 
   createModule(x, height = HEIGHT) {

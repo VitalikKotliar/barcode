@@ -8,11 +8,10 @@ export default class EAN {
 
   transformToSequences(number) {
     const digits = this.calculationHelper.splitToDigits(number); // [4,8,2,0...]
-    const parts = this.separateDigits(digits);
-    const sum = this.calculateSum(digits);
+    const parts = this.prepareParts(digits);
     const leftPart = this.transformLeftPart(parts.left, parts.key);
-    const rightPart = this.transformRightPart([...parts.right, sum]);
-    return {left: leftPart, right: rightPart};
+    const rightPart = this.transformRightPart([...parts.right, parts.sum]);
+    return {left: leftPart, right: rightPart, parts};
   }
 
   transformLeftPart(digits, key) {
@@ -33,11 +32,12 @@ export default class EAN {
     return this.calculationHelper.splitToDigits(result);
   }
 
-  separateDigits(digits) {
+  prepareParts(digits) {
     return {
       key: digits[0],
       left: digits.slice(1, 7),
-      right: digits.slice(7, 12)
+      right: digits.slice(7, 12),
+      sum: this.calculateSum(digits)
     };
   }
 
