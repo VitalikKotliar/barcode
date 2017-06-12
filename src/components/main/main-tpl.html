@@ -1,5 +1,7 @@
 <h1>Generate code</h1>
 <p>{{ main.randomNumber }}</p>
-<button ng-click="main.draw()">Draw</button>
-
-<canvas id="field" width="1000" height="1000"></canvas>
+<div class="form">
+  <input type="text" ng-model="main.number" minlength="12" maxlength="13">
+  <button ng-click="main.generate()">Generate</button>
+</div>
+<canvas id="field" width="400" height="400"></canvas>
