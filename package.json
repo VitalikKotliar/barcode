@@ -6,7 +6,7 @@
   "main": "src/app.js",
   "scripts": {
     "build": "webpack --config webpack.build.js --bail -p",
-    "dev": "node node_modules/.bin/webpack-dev-server --history-api-fallback --hot --inline --progress",
+    "dev": "webpack-dev-server --history-api-fallback --hot --inline --progress",
     "test": "node node_modules/eslint/bin/eslint .; node node_modules/karma/bin/karma start && node_modules/istanbul/lib/cli.js check-coverage --lines=70",
     "test:live": "node node_modules/karma/bin/karma start --auto-watch --no-single-run",
     "postinstall": "npm run build",

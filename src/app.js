@@ -3,11 +3,13 @@ import './styles/main.scss';
 import angular from 'angular';
 import router from './core/router';
 import i18n from './core/i18n';
+import services from './services';
 
 import main from './components/main';
 
 angular
-  .module('changeThis', [
+  .module('barcode', [
+    services,
     main,
     router,
     i18n

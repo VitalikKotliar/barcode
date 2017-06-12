@@ -1,16 +1,17 @@
 import codes from './codes';
 
 export default class HomeController {
-  constructor() {
+  constructor(Canvas) {
+    this.canvas = Canvas;
     this.number = '78020137962';
-    this.x = 20;
-    this.weight = 2;
-    const c = document.getElementById('field');
-    this.ctx = c.getContext('2d');
-    this.ctx.strokeStyle = '#000000';
-    this.drawBorder();
-    this.drawNumber();
-    this.drawBorder();
+    // this.x = 20;
+    // this.weight = 2;
+    // this.ctx.strokeStyle = '#000000';
+    // this.drawBorder();
+    // this.drawNumber();
+    // this.drawBorder();
+    // this.canvas.createModule(100);
+    this.draw();
   }
 
   drawBorder() {
@@ -20,9 +21,10 @@ export default class HomeController {
     this.x = this.x + this.weight;
   }
 
-  drawNumber() {
-    const spitedNumber = this.splitToDigits(this.number);
-    this.draw(spitedNumber);
+  draw() {
+    const splitedNumber = this.splitToDigits(this.number);
+    const sequence = this.transformNumber(splitedNumber);
+    this.canvas.drawBarcode(sequence);
   }
 
   splitToDigits(number) {
@@ -36,27 +38,13 @@ export default class HomeController {
     return output;
   }
 
-  draw(number) {
+  transformNumber(number) {
+    let sequence = [];
     for (let i = 0; i < number.length; i++) {
       const digit = number[i];
       const modules = codes[digit];
-      this.drawDigit(modules);
+      sequence.push(...modules);
     }
-  }
-
-  drawDigit(modules) {
-    for (let i = 0; i < modules.length; i++) {
-      const module = modules[i];
-      // this.ctx.strokeStyle = module ? '#000000' : '#FFFFFF';
-      if (module) {
-        this.createModule(70);
-      }
-      this.x = this.x + this.weight;
-    }
-  }
-
-  createModule(height) {
-    this.ctx.fillRect(this.x, 20, this.weight - 1, height);
-    this.ctx.stroke();
+    return sequence;
   }
 }
