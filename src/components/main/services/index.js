@@ -1,5 +1,5 @@
 import Canvas from './canvas';
-import Ean from './ean';
+import Ean from './ean/ean';
 import CalculationHelper from './calculationHelper';
 
 export default angular

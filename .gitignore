@@ -31,6 +31,7 @@ Thumbs.db
 *swn
 build
 dist
+coverage
 temp
 .tmp
 node_modules

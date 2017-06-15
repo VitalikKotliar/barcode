@@ -1,5 +1,5 @@
-import CODES from '../constants/CODES';
-import STRUCTURE from '../constants/STRUCTURE';
+import CODES from './constants/CODES';
+import STRUCTURE from './constants/STRUCTURE';
 
 export default class EAN {
   constructor(CalculationHelper) {

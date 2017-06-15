@@ -25,19 +25,19 @@ module.exports = function karmaConfig(config) {
       'PhantomJS'
     ],
     singleRun: true,
-    coverageReporter: {
-      reporters: [{
-          type: 'html'
-      },
-        {
-          type: 'json'
-      },
-        {
-          type: 'text-summary'
-      }],
-      dir: 'build/coverage/'
-
-    },
+    // coverageReporter: {
+    //   reporters: [{
+    //       type: 'html'
+    //   },
+    //     {
+    //       type: 'json'
+    //   },
+    //     {
+    //       type: 'text-summary'
+    //   }],
+    //   dir: 'build/coverage/'
+    //
+    // },
     webpack: webpackConfig
   });
 };
