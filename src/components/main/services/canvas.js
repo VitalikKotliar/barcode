@@ -16,6 +16,12 @@ export default class Canvas {
     this.x = START_X;
   }
 
+  drawITFBarcode(sequences, number) {
+    this.clear();
+    this.drawSequence(sequences);
+    this.drawITFSignature(number);
+  }
+
   drawBarcode(sequences) {
     this.clear();
     this.drawBorder();
@@ -40,9 +46,16 @@ export default class Canvas {
       if (module === 1) {
         this.createModule(this.x, height);
       }
-      // this.createSign(x + WIDTH/2, START_Y + HEIGHT + 12, module);
       this.x += WIDTH;
     }
+  }
+
+  drawITFSignature(number) {
+    let x = SIGNATURE_X + FONT_SIZE * 0.7;
+    number.split('').map((digit) => {
+      this.createSign(x, SIGNATURE_Y, digit);
+      x += FONT_SIZE;
+    });
   }
 
   drawSignature(parts) {
