@@ -37,22 +37,9 @@ export default class EAN {
       key: digits[0],
       left: digits.slice(1, 7),
       right: digits.slice(7, 12),
-      sum: this.calculateSum(digits)
+      sum: this.calculationHelper.calculateSum(digits)
     };
   }
 
-  calculateSum(digits) { // [4, 8, 2, 0, 0, 1, 1, 1, 8, 2, 0, 3]
-    let sumEven = 0;
-    let sumOdd = 0; // для непарного
-    for (let i = 0; i < digits.length; i++) {
-      const digit = digits[i];
-      if (i % 2 === 0) {
-        sumOdd += digit;
-      } else {
-        sumEven += digit;
-      }
-    }
-    const sum = 3 * sumOdd + sumEven;
-    return sum % 10;
-  }
+
 }

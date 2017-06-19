@@ -1,15 +1,28 @@
 export default class HomeController {
-  constructor(Canvas, Ean, ITF) {
+  constructor(Canvas, Ean, ITF, CanvasITF, CalculationHelper) {
     this.canvas = Canvas;
     this.ean = Ean;
     this.ITF = ITF;
-    this.number = '482001118203';
+    this.canvasITF = CanvasITF;
+    this.calculationHelper = CalculationHelper;
+
+    this.number = '482001118203'; // ean
+    // this.number = '0061414100041';
+    this.codeLength = this.number.length;
     this.generate();
   }
 
   generate() {
-    // const sequences = this.ean.transformToSequences(this.number);
-    const sequences = this.ITF.transformToSequences(this.number);
-    this.canvas.drawITFBarcode(sequences, this.number);
+    if (this.isITF()) {
+      const sequences = this.ITF.transformToSequences(this.number);
+      this.canvasITF.drawBarcode(sequences);
+    } else {
+      const sequences = this.ean.transformToSequences(this.number);
+      this.canvas.drawBarcode(sequences);
+    }
+  }
+
+  isITF() {
+    return this.codeLength === 13;
   }
 }

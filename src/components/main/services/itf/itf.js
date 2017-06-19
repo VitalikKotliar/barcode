@@ -6,18 +6,18 @@ export default class ITF {
   }
 
   transformToSequences(number) {
-    let newNumber = this.addBorders(number);
+    let sum = this.calculationHelper.calculateSum(number);
+    let newNumber = this.addBorders(number, sum);
     let codes = this.mapToCodes(newNumber);
-    return this.mapToSequence(codes);
+    return {
+      sequences: this.mapToSequence(codes),
+      number: [...number, sum]
+    };
   }
 
-  addBorders(number) {
+  addBorders(number, sum) {
     let result = ['a', 'a'];
-    if (number.length % 2 !== 0) {
-      result.push(0);
-    }
-    result.push(...number);
-    result.push('a', 'z');
+    result.push(...number, '' + sum, 'z', 'a');
     return result;
   }
 

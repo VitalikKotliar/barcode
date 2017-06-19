@@ -1,6 +1,6 @@
 export const WIDTH = 2;
-export const START_X = 60;
-export const START_Y = 20;
+export const START_X = 150;
+export const START_Y = 200;
 export const HEIGHT = WIDTH * 50;
 export const HEIGHT_BORDER = HEIGHT * 1.07221007;
 // signature
@@ -14,12 +14,10 @@ export default class Canvas {
     this.ctx = c.getContext('2d');
     this.ctx.font = `bold ${FONT_SIZE}px sans-serif`;
     this.x = START_X;
-  }
-
-  drawITFBarcode(sequences, number) {
-    this.clear();
-    this.drawSequence(sequences);
-    this.drawITFSignature(number);
+    this.constants = {
+      WIDTH, START_X, START_Y, HEIGHT,
+      HEIGHT_BORDER, FONT_SIZE, SIGNATURE_X, SIGNATURE_Y
+    };
   }
 
   drawBarcode(sequences) {
@@ -50,14 +48,6 @@ export default class Canvas {
     }
   }
 
-  drawITFSignature(number) {
-    let x = SIGNATURE_X + FONT_SIZE * 0.7;
-    number.split('').map((digit) => {
-      this.createSign(x, SIGNATURE_Y, digit);
-      x += FONT_SIZE;
-    });
-  }
-
   drawSignature(parts) {
     let x = SIGNATURE_X + FONT_SIZE * 0.7;
     this.createSign(SIGNATURE_X - FONT_SIZE, SIGNATURE_Y, parts.key);
@@ -84,6 +74,6 @@ export default class Canvas {
 
   clear() {
     this.x = START_X;
-    this.ctx.clearRect(0, 0, 400, 400);
+    this.ctx.clearRect(0, 0, 800, 800);
   }
 }
