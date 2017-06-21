@@ -1,8 +1,4 @@
-<h1 ng-if="!main.isITF()">EAN-13 barcode</h1>
-<h1 ng-if="main.isITF()">ITF-14 barcode</h1>
-<form ng-submit="main.generate()">
-  <input type="text" ng-model="main.number"
-         minlength="{{main.codeLength}}" maxlength="{{main.codeLength}}">
-  <button type="submit">Generate</button>
-</form>
-<canvas id="field" width="800" height="800"></canvas>
+<a ui-sref="main.eanGenerate">Generate EAN</a>
+<a ui-sref="main.eanDecode">Decode EAN</a>
+
+<ui-view></ui-view>

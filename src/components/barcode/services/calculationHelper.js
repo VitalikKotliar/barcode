@@ -23,6 +23,6 @@ export default class CalculationHelper {
     }
     const sum = 3 * sumOdd + sumEven;
     const result = 10 - sum % 10;
-    return result  === 10 ? 0: result;
+    return result === 10 ? 0 : result;
   }
 }

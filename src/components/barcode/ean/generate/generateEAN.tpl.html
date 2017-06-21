@@ -1,0 +1,9 @@
+<h1 ng-if="!generateEANCtrl.isITF()">EAN-13 barcode</h1>
+<h1 ng-if="generateEANCtrl.isITF()">ITF-14 barcode</h1>
+<form ng-submit="generateEANCtrl.generate()">
+  <input type="text" ng-model="generateEANCtrl.number"
+         minlength="{{generateEANCtrl.codeLength}}"
+         maxlength="{{generateEANCtrl.codeLength}}">
+  <button type="submit">Generate</button>
+</form>
+<canvas id="field" width="800" height="800"></canvas>

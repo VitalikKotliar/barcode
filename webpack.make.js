@@ -80,8 +80,7 @@ module.exports = function makeWebpackConfig(options) {
        */
       test: /\.js$/,
       loaders: [
-        'babel?optional=runtime',
-        'ng-annotate'
+        'babel?optional=runtime'
       ],
       exclude: /node_modules/
     }, {
@@ -113,10 +112,10 @@ module.exports = function makeWebpackConfig(options) {
 
   if (TEST) {
 
-    // ISPARTA LOADER    
-    // Reference: https://github.com/ColCh/isparta-instrumenter-loader   
-    // Instrument JS files with Isparta for subsequent code coverage reporting   
-    // Skips node_modules and files that end with .test.js   
+    // ISPARTA LOADER
+    // Reference: https://github.com/ColCh/isparta-instrumenter-loader
+    // Instrument JS files with Isparta for subsequent code coverage reporting
+    // Skips node_modules and files that end with .test.js
     config.module.preLoaders.push({
       test: /\.js$/,
       exclude: [
@@ -161,14 +160,13 @@ module.exports = function makeWebpackConfig(options) {
     config.plugins.push(
       new HtmlWebpackPlugin({
         template: './src/index.html',
-        inject: 'body',
-        minify: BUILD
+        inject: 'body'
       })
     );
   }
 
   // Add build specific plugins
-  if (BUILD) {
+  if (false) {
     config.plugins.push(
       // Reference: http://webpack.github.io/docs/list-of-plugins.html#noerrorsplugin
       // Only emit files when there are no errors
@@ -176,11 +174,11 @@ module.exports = function makeWebpackConfig(options) {
 
       // Reference: http://webpack.github.io/docs/list-of-plugins.html#dedupeplugin
       // Dedupe modules in the output
-      new webpack.optimize.DedupePlugin(),
+      new webpack.optimize.DedupePlugin()
 
       // Reference: http://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
       // Minify all javascript, switch loaders to minimizing mode
-      new webpack.optimize.UglifyJsPlugin()
+      // new webpack.optimize.UglifyJsPlugin()
     );
   }
 

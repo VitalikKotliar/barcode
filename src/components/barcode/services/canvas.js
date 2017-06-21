@@ -1,6 +1,6 @@
 export const WIDTH = 2;
-export const START_X = 150;
-export const START_Y = 200;
+export const START_X = 50;
+export const START_Y = 50;
 export const HEIGHT = WIDTH * 50;
 export const HEIGHT_BORDER = HEIGHT * 1.07221007;
 // signature

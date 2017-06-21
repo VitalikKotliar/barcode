@@ -1,4 +1,6 @@
-import template from '../../components/main/main-tpl.html';
+import mainTpl from '../../components/main/main-tpl.html';
+import generateEANTpl from '../../components/barcode/ean/generate/generateEAN.tpl.html';
+import decodeEANTpl from '../../components/barcode/ean/decode/decodeEAN.tpl.html';
 
 export default function routerConfig($urlRouterProvider, $stateProvider) {
   $urlRouterProvider.otherwise('/');
@@ -6,13 +8,19 @@ export default function routerConfig($urlRouterProvider, $stateProvider) {
   $stateProvider
     .state('main', {
       url: '/',
-      views: {
-        main: {
-          template: template,
-          controller: 'MainController',
-          controllerAs: 'main'
-        }
-      }
+      template: mainTpl
+    })
+    .state('main.eanGenerate', {
+      url: 'ean-generate',
+      template: generateEANTpl,
+      controller: 'GenerateEANController',
+      controllerAs: 'generateEANCtrl'
+    })
+    .state('main.eanDecode', {
+      url: 'ean-decode',
+      template: decodeEANTpl,
+      controller: 'DecodeEANController',
+      controllerAs: 'decodeEANCtrl'
     });
 }
 
